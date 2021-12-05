@@ -25,16 +25,41 @@ class App extends Component {
     }));
   };
 
+  onDeleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
+  onFilter = event => {
+    this.setState({ filter: event.target.value });
+  };
+
+  //======
+  showFiltered = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter),
+    );
+  };
+  //=====
+
   render() {
-    const { contacts } = this.state;
+    const { filter } = this.state;
+    const filteredContacts = this.showFiltered();
     return (
       <div>
         <Sections title="Phonebook">
           <Forms getSubmit={this.getDataSubmit} />
         </Sections>
         <Sections title="Contacts">
-          <Filter contacts={contacts} />
-          <Contacts contacts={contacts} />
+          <Filter value={filter} onFilter={this.OnFilter} />
+          <Contacts
+            contacts={filteredContacts}
+            onDeleteContact={this.onDeleteContact}
+          />
         </Sections>
       </div>
     );
