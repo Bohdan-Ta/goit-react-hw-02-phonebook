@@ -1,4 +1,8 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import s from './Contacts.module.css';
+
 export default function Contacts({ contacts, onDeleteContact }) {
   return (
     <>
@@ -19,9 +23,17 @@ export default function Contacts({ contacts, onDeleteContact }) {
         ))}
       </ul>
       <p className={s.totalContact}>
-        {' '}
-        all contacts in phonebook: {contacts.length}{' '}
+        all contacts in phonebook: {contacts.length}
       </p>
     </>
   );
 }
+
+Contacts.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  ),
+  onDeleteContact: PropTypes.func.isRequired,
+};

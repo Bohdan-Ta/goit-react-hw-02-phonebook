@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import Sections from './Section';
 import Forms from './Forms/Forms';
-import { nanoid } from 'nanoid';
 import Contacts from './Contacts';
 import Filter from './Filter/Filter';
+
+import { nanoid } from 'nanoid';
+
 import s from './App/App.module.css';
 
 class App extends Component {
@@ -25,7 +27,7 @@ class App extends Component {
     );
 
     if (searchDublicate) {
-      alert('контакт уже есть');
+      alert(`${newContact.name} is alredy in contacts`);
       return;
     } else {
       this.setState(({ contacts }) => ({
