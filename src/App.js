@@ -4,6 +4,7 @@ import Forms from './Forms/Forms';
 import { nanoid } from 'nanoid';
 import Contacts from './Contacts';
 import Filter from './Filter/Filter';
+import s from './App/App.module.css';
 
 class App extends Component {
   state = {
@@ -17,12 +18,20 @@ class App extends Component {
   };
 
   getDataSubmit = ({ name, number }) => {
-    // const { contacts } = this.state;
+    const { contacts } = this.state;
     const newContact = { id: nanoid(), name, number };
+    const searchDublicate = contacts.find(
+      contact => contact.name === newContact.name,
+    );
 
-    this.setState(({ contacts }) => ({
-      contacts: [newContact, ...contacts],
-    }));
+    if (searchDublicate) {
+      alert('контакт уже есть');
+      return;
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [newContact, ...contacts],
+      }));
+    }
   };
 
   onDeleteContact = contactId => {
@@ -31,31 +40,31 @@ class App extends Component {
     }));
   };
 
-  onFilter = event => {
+  // prescribed logic of contacts is searched by name without registry
+  searchContact = event => {
     this.setState({ filter: event.target.value });
   };
 
-  //======
-  showFiltered = () => {
+  sensitiveSearch = () => {
     const { filter, contacts } = this.state;
-    const normalizedFilter = filter.toLowerCase();
+    const lowerCaseLetters = filter.toLowerCase().trim();
 
     return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter),
+      contact.name.toLowerCase().includes(lowerCaseLetters),
     );
   };
   //=====
 
   render() {
     const { filter } = this.state;
-    const filteredContacts = this.showFiltered();
+    const filteredContacts = this.sensitiveSearch();
     return (
-      <div>
+      <div className={s.container}>
         <Sections title="Phonebook">
           <Forms getSubmit={this.getDataSubmit} />
         </Sections>
         <Sections title="Contacts">
-          <Filter value={filter} onFilter={this.OnFilter} />
+          <Filter value={filter} searchContact={this.searchContact} />
           <Contacts
             contacts={filteredContacts}
             onDeleteContact={this.onDeleteContact}

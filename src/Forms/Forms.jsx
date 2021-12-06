@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import s from './Forms.module.css';
 
 export default class Forms extends Component {
   state = { name: '', number: '' };
@@ -18,22 +19,21 @@ export default class Forms extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
+      <form onSubmit={this.handleSubmit} autoComplete="off">
+        <div className={s.inputContainer}>
           <input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            autoComplete="off"
             value={this.state.name}
             onChange={this.handleInput}
+            className={s.input}
           ></input>
-        </label>
-        <label>
-          Number:
+          <label className={s.label}>Name:</label>
+        </div>
+        <div className={s.inputContainer}>
           <input
             type="tel"
             name="number"
@@ -41,9 +41,13 @@ export default class Forms extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             value={this.state.number}
             onChange={this.handleInput}
+            className={s.input}
           ></input>
-        </label>
-        <button type="submit">Add contact</button>
+          <label className={s.label}>Number:</label>
+        </div>
+        <button type="submit" className={s.borderButton}>
+          Add contact
+        </button>
       </form>
     );
   }

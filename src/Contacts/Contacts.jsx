@@ -1,16 +1,27 @@
+import s from './Contacts.module.css';
 export default function Contacts({ contacts, onDeleteContact }) {
   return (
     <>
       <ul>
         {contacts.map(({ id, name, number }) => (
-          <li key={id}>
-            <p>{name}</p>
-            <p>{number}</p>
-            <button onClick={() => onDeleteContact(id)}>delete</button>
+          <li key={id} className={s.list}>
+            <div>
+              <p className={s.name}>{name}</p>
+              <p className={s.number}>{number}</p>
+            </div>
+            <button
+              onClick={() => onDeleteContact(id)}
+              className={s.slidingButton}
+            >
+              delete
+            </button>
           </li>
         ))}
       </ul>
-      <p> All Contacts: {contacts.length} </p>
+      <p className={s.totalContact}>
+        {' '}
+        all contacts in phonebook: {contacts.length}{' '}
+      </p>
     </>
   );
 }
