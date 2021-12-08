@@ -10,13 +10,15 @@ const validationSchema = Yup.object({
     .matches(
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
       "Name may contain only letters, apostrophe, dash and spaces. For example: Charles de Batz de Castelmore d'Artagnan",
-    ),
+    )
+    .required('required'),
   number: Yup.string()
     .matches(
       /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
       'Phone number is not valid',
     )
-    .min(6),
+    .min(6)
+    .required('required'),
 });
 
 export default class Forms extends Component {
@@ -32,14 +34,24 @@ export default class Forms extends Component {
             resetForm();
           }}
         >
-          <Form autocompleted="off">
+          <Form>
             <div className={s.inputContainer}>
-              <Field type="text" name="name" className={s.input} />
+              <Field
+                type="text"
+                name="name"
+                className={s.input}
+                autocomplete="off"
+              />
               <label className={s.label}>Name:</label>
               <ErrorMessage name="name" component="div" className={s.error} />
             </div>
             <div className={s.inputContainer}>
-              <Field type="tel" name="number" className={s.input} />
+              <Field
+                type="tel"
+                name="number"
+                className={s.input}
+                autocomplete="off"
+              />
               <label className={s.label}>Number:</label>
               <ErrorMessage name="number" component="div" className={s.error} />
             </div>
