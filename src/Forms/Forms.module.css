@@ -49,6 +49,17 @@
   box-shadow: none;
 }
 
+.error {
+  position: absolute;
+  top: 100%;
+  width: 350px;
+  font-size: 14px;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0)) 1 100%;
+  color: rgb(245, 242, 79);
+}
+
 .borderButton {
   text-decoration: none;
   display: inline-block;

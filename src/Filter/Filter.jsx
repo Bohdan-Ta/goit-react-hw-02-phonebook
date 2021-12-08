@@ -11,9 +11,9 @@ export default function Filter({ value, searchContact }) {
         <DebounceInput
           type="text"
           autoComplete="off"
-          minLength={3}
+          minLength={2}
           debounceTimeout={300}
-          placeholder="search by name..."
+          placeholder="search ........"
           value={value}
           onChange={searchContact}
           className={s.input}
@@ -25,5 +25,5 @@ export default function Filter({ value, searchContact }) {
 
 Filter.propTypes = {
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };

@@ -1,7 +1,6 @@
 .form {
   position: relative;
   top: 20px;
-  /* text-align: center; */
   margin-bottom: 100px;
 }
 .input {
@@ -10,6 +9,7 @@
   padding: 0 10px;
   line-height: 40px;
   font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
   background: none;
   border-width: 0;
   border-bottom: 2px solid red;
