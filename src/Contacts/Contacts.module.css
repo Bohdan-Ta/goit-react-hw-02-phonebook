@@ -25,6 +25,7 @@
   overflow: hidden;
   letter-spacing: 2px;
   transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
 }
 .slidingButton:before {
   content: '';

@@ -74,6 +74,7 @@
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
+  cursor: pointer;
 }
 .borderButton:before,
 .borderButton:after {
